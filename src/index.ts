@@ -17,7 +17,7 @@ function forceYield() {
   });
 }
 
-function autoYield() {
+async function autoYield() {
   if (
     !enabled ||
     (__yield_time__ !== null && !shouldYieldWork(__yield_time__))
