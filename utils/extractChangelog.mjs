@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path/posix';
 
-const VERSION_RE = /#+ \[\d+\.\d+\.\d+\].+/gi;
+const VERSION_RE = /#+ [<>a-z]*\d+\.\d+\.\d+.+/gi;
 const CHANGELOG = path.resolve(process.cwd(), 'CHANGELOG.md');
 
 const changelogContents = fs.readFileSync(CHANGELOG, 'utf-8');
