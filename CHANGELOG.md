@@ -1,3 +1,8 @@
+## 0.1.0 (2023-09-01)
+
+
+
+
 ## <small>0.0.3 (2023-08-29)</small>
 
 * feat: 🎸 fix autoYield method to return always promise ([0cada26](https://github.com/mjancarik/esmj-task/commit/0cada26))
