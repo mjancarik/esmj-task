@@ -1,3 +1,9 @@
+## 0.2.0 (2023-09-12)
+
+* feat: 🎸 add nextFrameYield mmethod ([a0138de](https://github.com/mjancarik/esmj-task/commit/a0138de))
+
+
+
 ## 0.1.0 (2023-09-01)
 
 
