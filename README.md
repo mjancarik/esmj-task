@@ -40,7 +40,11 @@ Method divide long task to new tasks if it is need. If autoYield logic is turn o
 
 ### forceYield()
 Type: `() => Promise<void>`
-Method create new task for every call.
+Method create new task for every call, yield to next event loop (0 ms delay). 
+
+### nextFrameYield()
+Type: `() => Promise<void>`
+Method create new task for every call, yield to next frame (16 ms delay).
 
 ### autoYieldReset
 Type: `() => void`

@@ -3,7 +3,7 @@ import { jest } from '@jest/globals';
 import * as main from '../index';
 
 const {
-  default: { autoYield, autoYieldToggle, autoYieldReset },
+  default: { autoYield, autoYieldToggle, autoYieldReset, nextFrameYield },
 } = main;
 
 describe('Tasks', () => {
@@ -81,6 +81,15 @@ describe('Tasks', () => {
       await promise2;
 
       expect(setTimeout).toHaveBeenCalledTimes(0);
+    });
+
+    it('should yield logic to next frame', async () => {
+      const promise = nextFrameYield();
+      jest.runOnlyPendingTimers();
+      await promise;
+
+      expect(setTimeout).toHaveBeenCalledTimes(1);
+      expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 16);
     });
   });
 });

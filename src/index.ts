@@ -7,13 +7,18 @@ let __yield_time__: number | null = null;
 let enabled = true;
 const DEADLINE = 45;
 const FRAME = 0;
+const NEXT_FRAME = 16;
 
-function forceYield() {
+function nextFrameYield() {
+  return forceYield(NEXT_FRAME);
+}
+
+function forceYield(frame?: number) {
   return new Promise((resolve) => {
     setTimeout(() => {
       __yield_time__ = performance.now() + DEADLINE;
       resolve(void 0);
-    }, FRAME);
+    }, frame ?? FRAME);
   });
 }
 
@@ -46,4 +51,10 @@ function shouldYieldWork(deadline) {
   );
 }
 
-export { forceYield, autoYield, autoYieldReset, autoYieldToggle };
+export {
+  forceYield,
+  autoYield,
+  autoYieldReset,
+  autoYieldToggle,
+  nextFrameYield,
+};
