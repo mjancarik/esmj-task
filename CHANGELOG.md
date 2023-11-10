@@ -1,3 +1,13 @@
+## 0.3.0 (2023-11-10)
+
+* feat: 🎸 new setConfig method replace autoYieldToggle method ([f4335ea](https://github.com/mjancarik/esmj-task/commit/f4335ea))
+
+
+### BREAKING CHANGE
+
+* 🧨  Replace autoYieldToggle method with setConfig
+
+
 ## 0.2.0 (2023-09-12)
 
 * feat: 🎸 add nextFrameYield mmethod ([a0138de](https://github.com/mjancarik/esmj-task/commit/a0138de))
