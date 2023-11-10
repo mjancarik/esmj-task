@@ -3,14 +3,14 @@ import { jest } from '@jest/globals';
 import * as main from '../index';
 
 const {
-  default: { autoYield, autoYieldToggle, autoYieldReset, nextFrameYield },
+  default: { autoYield, setConfig, autoYieldReset, nextFrameYield },
 } = main;
 
 describe('Tasks', () => {
   beforeEach(() => {
     jest.useFakeTimers();
     jest.spyOn(global, 'setTimeout');
-    autoYieldToggle(true);
+    setConfig({ autoEnable: true });
   });
 
   afterEach(() => {
@@ -69,7 +69,7 @@ describe('Tasks', () => {
     });
 
     it('should turn off auto logic yield', async () => {
-      autoYieldToggle(false);
+      setConfig({ autoEnable: false });
       const promise = autoYield();
       jest.runOnlyPendingTimers();
       await promise;
@@ -90,6 +90,23 @@ describe('Tasks', () => {
 
       expect(setTimeout).toHaveBeenCalledTimes(1);
       expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 16);
+    });
+
+    it('should enable shared global context', async () => {
+      setConfig({ autoShareContext: true });
+      const promise = autoYield();
+      jest.runOnlyPendingTimers();
+      await promise;
+
+      autoYieldReset();
+
+      const promise2 = autoYield();
+      jest.runOnlyPendingTimers();
+      await promise2;
+
+      expect(setTimeout).toHaveBeenCalledTimes(2);
+      expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 0);
+      expect(globalThis.__esmjTaskYieldTime__).toBeDefined();
     });
   });
 });

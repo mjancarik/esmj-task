@@ -3,8 +3,15 @@ type NavigatorScheduling = Navigator & {
   scheduling: { isInputPending?: () => boolean };
 };
 
-let __yield_time__: number | null = null;
-let enabled = true;
+type Context = {
+  __esmjTaskYieldTime__?: number;
+};
+
+let context: Context = {};
+let config = {
+  autoEnable: true,
+  autoShareContext: false,
+};
 const DEADLINE = 45;
 const FRAME = 0;
 const NEXT_FRAME = 16;
@@ -16,7 +23,7 @@ function nextFrameYield() {
 function forceYield(frame?: number) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      __yield_time__ = performance.now() + DEADLINE;
+      context.__esmjTaskYieldTime__ = performance.now() + DEADLINE;
       resolve(void 0);
     }, frame ?? FRAME);
   });
@@ -24,8 +31,9 @@ function forceYield(frame?: number) {
 
 async function autoYield() {
   if (
-    !enabled ||
-    (__yield_time__ !== null && !shouldYieldWork(__yield_time__))
+    !config.autoEnable ||
+    (context.__esmjTaskYieldTime__ !== undefined &&
+      !shouldYieldWork(context.__esmjTaskYieldTime__))
   ) {
     return;
   }
@@ -33,12 +41,35 @@ async function autoYield() {
   return forceYield();
 }
 
-function autoYieldReset() {
-  __yield_time__ = null;
+function setConfig(newConfig = {}) {
+  config = { ...config, ...newConfig };
+
+  if (config.autoShareContext) {
+    context = getGlobalContext();
+  } else {
+    context = {};
+  }
 }
 
-function autoYieldToggle(state) {
-  enabled = state;
+function autoYieldReset() {
+  context.__esmjTaskYieldTime__ = undefined;
+}
+
+function getGlobalContext() {
+  if (typeof globalThis !== 'undefined') {
+    return globalThis;
+  }
+  if (typeof self !== 'undefined') {
+    return self;
+  }
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+  if (typeof global !== 'undefined') {
+    return global;
+  }
+
+  return {};
 }
 
 function shouldYieldWork(deadline) {
@@ -51,10 +82,4 @@ function shouldYieldWork(deadline) {
   );
 }
 
-export {
-  forceYield,
-  autoYield,
-  autoYieldReset,
-  autoYieldToggle,
-  nextFrameYield,
-};
+export { forceYield, autoYield, autoYieldReset, setConfig, nextFrameYield };

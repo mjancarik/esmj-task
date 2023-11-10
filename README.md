@@ -50,6 +50,6 @@ Method create new task for every call, yield to next frame (16 ms delay).
 Type: `() => void`
 Method reset logic for creating new tasks.
 
-### autoYieldToggle
-Type: `(state: boolean) => void`
-Method turn on/off autoYield logic.
+### setConfig
+Type: `({ autoEnable: boolean, autoShareContext: boolean }) => void`
+Method config package autoEnable: turn on/off autoYield logic and autoShareContext: turn on/off shared context through global variable.
