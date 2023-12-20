@@ -1,3 +1,9 @@
+## 0.4.0 (2023-12-20)
+
+* feat: 🎸 add new method autoYieldStartPoint ([f5a1c93](https://github.com/mjancarik/esmj-task/commit/f5a1c93))
+
+
+
 ## 0.3.0 (2023-11-10)
 
 * feat: 🎸 new setConfig method replace autoYieldToggle method ([f4335ea](https://github.com/mjancarik/esmj-task/commit/f4335ea))

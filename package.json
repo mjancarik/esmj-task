@@ -1,6 +1,6 @@
 {
   "name": "@esmj/task",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Tiny task management library which divide long task. Improve core web vitals and browser responsiveness.",
   "keywords": [
     "task",
