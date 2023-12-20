@@ -3,7 +3,13 @@ import { jest } from '@jest/globals';
 import * as main from '../index';
 
 const {
-  default: { autoYield, setConfig, autoYieldReset, nextFrameYield },
+  default: {
+    autoYield,
+    setConfig,
+    autoYieldReset,
+    nextFrameYield,
+    autoYieldStartPoint,
+  },
 } = main;
 
 describe('Tasks', () => {
@@ -66,6 +72,19 @@ describe('Tasks', () => {
 
       expect(setTimeout).toHaveBeenCalledTimes(2);
       expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 0);
+    });
+
+    it('should auto yield with defined starting point', async () => {
+      autoYieldStartPoint();
+      const promise = autoYield();
+      jest.runOnlyPendingTimers();
+      await promise;
+
+      const promise2 = autoYield();
+      jest.runOnlyPendingTimers();
+      await promise2;
+
+      expect(setTimeout).toHaveBeenCalledTimes(0);
     });
 
     it('should turn off auto logic yield', async () => {

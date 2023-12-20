@@ -5,5 +5,6 @@ export default defineConfig({
   clean: true,
   target: 'es2022',
   format: ['esm', 'cjs'],
+  minify: true,
   shims: false,
 });

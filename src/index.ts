@@ -23,7 +23,7 @@ function nextFrameYield() {
 function forceYield(frame?: number) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      context.__esmjTaskYieldTime__ = performance.now() + DEADLINE;
+      autoYieldStartPoint();
       resolve(void 0);
     }, frame ?? FRAME);
   });
@@ -55,6 +55,10 @@ function autoYieldReset() {
   context.__esmjTaskYieldTime__ = undefined;
 }
 
+function autoYieldStartPoint() {
+  context.__esmjTaskYieldTime__ = performance.now() + DEADLINE;
+}
+
 function getGlobalContext() {
   if (typeof globalThis !== 'undefined') {
     return globalThis;
@@ -82,4 +86,11 @@ function shouldYieldWork(deadline) {
   );
 }
 
-export { forceYield, autoYield, autoYieldReset, setConfig, nextFrameYield };
+export {
+  forceYield,
+  autoYield,
+  autoYieldReset,
+  autoYieldStartPoint,
+  setConfig,
+  nextFrameYield,
+};
