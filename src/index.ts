@@ -3,6 +3,14 @@ type NavigatorScheduling = Navigator & {
   scheduling: { isInputPending?: () => boolean };
 };
 
+declare global {
+  interface Window {
+    scheduler?: {
+      yield: () => Promise<void>;
+    };
+  }
+}
+
 type Context = {
   __esmjTaskYieldTime__?: number;
 };
@@ -17,10 +25,24 @@ const FRAME = 0;
 const NEXT_FRAME = 16;
 
 function nextFrameYield() {
-  return forceYield(NEXT_FRAME);
+  if (typeof requestAnimationFrame === 'undefined') {
+    return forceYield(NEXT_FRAME);
+  }
+
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => {
+      forceYield().then(resolve);
+    });
+  });
 }
 
 function forceYield(frame?: number) {
+  const context = getGlobalContext() as Window;
+
+  if (context.scheduler?.yield) {
+    return context.scheduler.yield();
+  }
+
   return new Promise((resolve) => {
     setTimeout(() => {
       autoYieldStartPoint();

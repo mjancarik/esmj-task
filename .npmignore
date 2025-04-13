@@ -15,5 +15,6 @@ utils/
 README.md
 CHANGELOG.md
 tsup.config.mjs
+biome.json
 jest.config.js
 setupJest.mjs

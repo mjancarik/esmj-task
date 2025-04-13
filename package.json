@@ -44,7 +44,7 @@
     "url": "https://github.com/mjancarik/esmj-task/issues"
   },
   "lint-staged": {
-    "**/*.{ts,js,mjs}": "npm run lint:cmd"
+    "**/*.{ts,js,mjs}": "npm run lint"
   },
   "commitlint": {
     "extends": [
