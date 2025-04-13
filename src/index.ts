@@ -39,7 +39,7 @@ function nextFrameYield() {
 function forceYield(frame?: number) {
   const context = getGlobalContext() as Window;
 
-  if (context.scheduler?.yield) {
+  if (typeof context.scheduler?.yield === 'function') {
     return context.scheduler.yield();
   }
 
