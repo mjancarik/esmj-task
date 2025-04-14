@@ -1,3 +1,14 @@
+## 0.5.0 (2025-04-14)
+
+* feat: 🎸 improve check ([b3e688f](https://github.com/mjancarik/esmj-task/commit/b3e688f))
+* feat: 🎸 use scheduler.yeild and requestAnimationFrame ([a747621](https://github.com/mjancarik/esmj-task/commit/a747621))
+* ci: 🎡 update push branch ([b44592f](https://github.com/mjancarik/esmj-task/commit/b44592f))
+* chore: 🤖 remove deprectecated files ([3e8d160](https://github.com/mjancarik/esmj-task/commit/3e8d160))
+* chore: 🤖 remove deprectecated lines ([a3e0cc9](https://github.com/mjancarik/esmj-task/commit/a3e0cc9))
+* chore: 🤖 update dev dependencies ([0014274](https://github.com/mjancarik/esmj-task/commit/0014274))
+
+
+
 ## 0.4.0 (2023-12-20)
 
 * feat: 🎸 add new method autoYieldStartPoint ([f5a1c93](https://github.com/mjancarik/esmj-task/commit/f5a1c93))
