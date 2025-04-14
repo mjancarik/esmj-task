@@ -1,3 +1,9 @@
+## <small>0.5.2 (2025-04-14)</small>
+
+* perf: ⚡️ nextFrameYield with requestAnimFrame use setTimeout ([a8eebd8](https://github.com/mjancarik/esmj-task/commit/a8eebd8))
+
+
+
 ## <small>0.5.1 (2025-04-14)</small>
 
 * fix: 🐛 set autoYieldStartPoint for scheduler.yield too ([ec20709](https://github.com/mjancarik/esmj-task/commit/ec20709))
