@@ -31,7 +31,8 @@ function nextFrameYield() {
 
   return new Promise((resolve) => {
     requestAnimationFrame(() => {
-      forceYield().then(resolve);
+      // we want to use setTimeout to yield
+      forceYield(0).then(resolve);
     });
   });
 }
@@ -39,7 +40,7 @@ function nextFrameYield() {
 function forceYield(frame?: number) {
   const context = getGlobalContext() as Window;
 
-  if (typeof context.scheduler?.yield === 'function') {
+  if (typeof context.scheduler?.yield === 'function' && frame === undefined) {
     autoYieldStartPoint();
     return context.scheduler.yield();
   }
