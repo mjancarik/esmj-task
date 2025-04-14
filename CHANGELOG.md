@@ -1,3 +1,9 @@
+## <small>0.5.1 (2025-04-14)</small>
+
+* fix: 🐛 set autoYieldStartPoint for scheduler.yield too ([ec20709](https://github.com/mjancarik/esmj-task/commit/ec20709))
+
+
+
 ## 0.5.0 (2025-04-14)
 
 * feat: 🎸 improve check ([b3e688f](https://github.com/mjancarik/esmj-task/commit/b3e688f))
