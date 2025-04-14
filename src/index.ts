@@ -40,6 +40,7 @@ function forceYield(frame?: number) {
   const context = getGlobalContext() as Window;
 
   if (typeof context.scheduler?.yield === 'function') {
+    autoYieldStartPoint();
     return context.scheduler.yield();
   }
 
